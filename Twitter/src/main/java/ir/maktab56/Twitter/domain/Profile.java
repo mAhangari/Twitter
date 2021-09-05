@@ -16,7 +16,8 @@ public class Profile extends BaseEntity<Long> {
     private String firstName;
 
     private String lastName;
-
+    
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     private String password;
