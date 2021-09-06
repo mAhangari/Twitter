@@ -57,7 +57,13 @@ public class Customer extends Profile {
 	}
 
 	public String toString() {
-		return "Id: " + getId() + ", First Name: " + getFirstName() + ", Last Name: " + getLastName()
-				+ "\nUserName: " + getUsername();
+		return  "id='" + getId() + "\' " +
+                "firstName= '" + getFirstName() + "\' " +
+                "lastName= '" + getLastName() + "\' " +
+                "username= '" + getUsername() + "\' " +
+                "password= '" + getPassword() + "\' " +
+                "birthday= '" + birthday + "\' " +
+                //"email= " + getEmail() + " " +
+                "phoneNumbers= " + getPhoneNumber();
 	}
 }
