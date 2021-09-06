@@ -12,7 +12,6 @@ public class Admin extends Profile {
 	private Boolean isSuperAdmin;
 	
 	public Admin() {
-		super();
 	}
 	
 	public Admin(String username, String password, String firstName,
