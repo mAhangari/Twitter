@@ -6,7 +6,7 @@ import ir.maktab56.Twitter.service.BaseMenu;
 public class CheckInputInformation {
 	
 	public boolean checkUsername(String username) {
-		boolean check = ApplicationContext.profileRepo.existsByUsername(username);
+		boolean check = ApplicationContext.profileServ.existsByUsername(username);
 		if(check) {
 			BaseMenu.singlePrintMessage("This Username is Alrady Exists.");
 			return check;
