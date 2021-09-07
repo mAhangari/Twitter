@@ -13,6 +13,7 @@ public class ProfileRepositoryImpl extends BaseEntityRepositoryImpl<Profile, Lon
 					implements ProfileRepository {
 	
 	public static final String FETCH_GRAPH = "javax.persistence.fetchgraph";
+	public static final String LOAD_GRAPH = "javax.persistence.loadgraph";
 	
 	public ProfileRepositoryImpl(EntityManagerFactory emf) {
 		super(emf);
@@ -35,12 +36,12 @@ public class ProfileRepositoryImpl extends BaseEntityRepositoryImpl<Profile, Lon
 		
 		Root<Profile> root = cq.from(Profile.class);
 		cq.where(cb.equal(root.get("username"), username));
-		cq.where(cb.equal(root.get("isDeleted"), 0));
+		//cq.where(cb.equal(root.get("isDeleted"), 0));
 		
 		TypedQuery<Profile> typedQuery = em.createQuery(cq);
 		EntityGraph<?> entityGraph = em.getEntityGraph(Customer.FETCH_TWEET_AND_COMMENT);
 		typedQuery.setHint(
-                FETCH_GRAPH, entityGraph
+                LOAD_GRAPH, entityGraph
         );
 		return typedQuery.getSingleResult();
 //		return em.createQuery(
