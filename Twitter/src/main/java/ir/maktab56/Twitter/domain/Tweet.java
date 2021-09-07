@@ -1,25 +1,29 @@
 package ir.maktab56.Twitter.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.Size;
+
+import ir.maktab56.Twitter.base.domain.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tweet")
-public class Tweet {
+@Table(name = "tweet_table")
+public class Tweet extends BaseEntity<Long> {
 	
 	@Column(name = "description")
-	@Size(min = 3, max = 15)
+	@Size(min = 2, max = 280)
 	private String description;
 	
-	private boolean numOfLike;
+	@Column(name = "number_of_like", nullable = true)
+	private Long numOfLike = 0L;
 	
-	@OneToMany(mappedBy = "tweets")
-	private Set<Comment> comments = new HashSet<>();
+	@OneToMany(mappedBy = "tweets", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Comment> comments = new ArrayList<>();
 	
 	@ManyToOne
-	@JoinColumn(name = "tweets")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
 	public Tweet() {
@@ -37,19 +41,28 @@ public class Tweet {
 		this.description = description;
 	}
 
-	public boolean isNumOfLike() {
+	public Long getNumOfLike() {
 		return numOfLike;
 	}
 
-	public void setNumOfLike(boolean numOfLike) {
+	public void setNumOfLike(Long numOfLike) {
 		this.numOfLike = numOfLike;
 	}
+	
+	public void like() {
+		this.numOfLike += 1L;
+	}
+	
+	public void disLike() {
+		if(this.numOfLike > 0)
+			this.numOfLike -= 1L;
+	}
 
-	public Set<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 	
@@ -63,5 +76,11 @@ public class Tweet {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	
+	public String toString() {
+		return "Description: '" + description + "' " +
+				"number of like: '" + numOfLike + "' " +
+				"comments: " + comments;
 	}
 }
