@@ -82,12 +82,10 @@ public class UserSearch {
     
     @Override
     public String toString() {
-    	return "Profile:\n" +
-                "firstName= '" + firstName + "\' " +
-                "lastName= '" + lastName + "\' " +
-                "username= '" + username + "\' " +
-                "age= '" + age + "\' " +
-                "email='" + emails + "\'\n" +
-                '}';
+    	return "firstName= '" + firstName + "\' " +
+               "lastName= '" + lastName + "\' " +
+               "username= '" + username + "\' " +
+               "age= '" + age + "\' " +
+               "email='" + emails + "\' ";
     }
 }
