@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "admin")
 public class Admin extends Profile {
 	
 	@Column(name = "is_super_admin", columnDefinition = "TINYINT(1)")
