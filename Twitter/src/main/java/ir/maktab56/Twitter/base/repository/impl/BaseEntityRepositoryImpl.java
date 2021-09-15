@@ -24,11 +24,10 @@ public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID>
 	public E save(E e) {
 		if(e.getId() == null) {
 			em.persist(e);
-			return e;
 		}else {
 			em.merge(e);
-			return e;
 		}
+		return e;
 	}
 
 	@Override
